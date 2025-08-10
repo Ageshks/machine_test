@@ -14,7 +14,7 @@ class ProductsController extends GetxController {
 
   Future<void> fetchProducts({bool firstLoad = false}) async {
     try {
-      if (firstLoad) isLoading.value = true; // only show loader first time
+      if (firstLoad) isLoading.value = true;
       final data = await ApiService.getProducts();
       products.value = data.map<Product>((p) => Product.fromJson(p)).toList();
     } catch (e) {

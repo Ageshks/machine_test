@@ -1,7 +1,6 @@
-import 'package:ecommerce/home/controller/product_controller.dart';
-import 'package:ecommerce/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:machine_test/home/controller/product_controller.dart';
 import '../../routes/app_routes.dart';
 
 class ProductsView extends StatelessWidget {
