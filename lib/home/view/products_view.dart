@@ -1,0 +1,71 @@
+import 'package:ecommerce/home/controller/product_controller.dart';
+import 'package:ecommerce/widgets/product_card.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../routes/app_routes.dart';
+
+class ProductsView extends StatelessWidget {
+  ProductsView({super.key});
+  final ProductsController controller = Get.put(ProductsController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Products"),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: "Logout",
+            onPressed: () {
+              controller.products.clear();
+              Get.offAllNamed(AppRoutes.login);
+              Get.snackbar("Logged out", "You have been logged out");
+            },
+          ),
+        ],
+      ),
+      body: Obx(() {
+        if (controller.isLoading.value && controller.products.isEmpty) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        if (controller.products.isEmpty) {
+          return Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.inbox, size: 64, color: Colors.grey),
+                const SizedBox(height: 8),
+                const Text('No products found'),
+                const SizedBox(height: 8),
+                ElevatedButton(
+                  onPressed: () => controller.fetchProducts(firstLoad: true),
+                  child: const Text('Retry'),
+                ),
+              ],
+            ),
+          );
+        }
+
+        return RefreshIndicator(
+          onRefresh: () => controller.fetchProducts(firstLoad: true),
+          child: GridView.builder(
+            physics: const AlwaysScrollableScrollPhysics(), // important
+            padding: const EdgeInsets.all(8),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 8,
+              crossAxisSpacing: 8,
+              childAspectRatio: 0.65,
+            ),
+            itemCount: controller.products.length,
+            itemBuilder: (_, index) {
+              return ProductCard(product: controller.products[index]);
+            },
+          ),
+        );
+      }),
+    );
+  }
+}
