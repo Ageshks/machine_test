@@ -15,7 +15,7 @@ class ProductsView extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          "Fazyo",
+          "SHOPOLICS",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),

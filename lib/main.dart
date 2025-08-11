@@ -14,9 +14,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'E-Commerce Test',
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.splash, // <-- set splash as initial route here
+      initialRoute: AppRoutes.splash,
       getPages: AppPages.routes,
-      theme: ThemeData(primarySwatch: Colors.blue),
     );
   }
 }

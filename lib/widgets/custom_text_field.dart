@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:machine_test/constants/colors.dart';
 
 class CustomTextField extends StatefulWidget {
   final String label;
@@ -47,7 +48,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 ? IconButton(
                   icon: Icon(
                     _isObscured ? Icons.visibility_off : Icons.visibility,
-                    color: Colors.white,
+                    color: AppColors.black,
                   ),
                   onPressed: () {
                     setState(() {

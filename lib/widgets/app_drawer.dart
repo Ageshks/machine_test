@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../routes/app_routes.dart';
 import '../home/controller/product_controller.dart';
+import '../../constants/colors.dart'; // import your colors
 
 class AppDrawer extends StatelessWidget {
   final ProductsController controller;
@@ -12,12 +13,23 @@ class AppDrawer extends StatelessWidget {
     return Drawer(
       child: Column(
         children: [
-          const UserAccountsDrawerHeader(
-            accountName: Text("mor_2314"),
-            accountEmail: Text("example.com"),
-            currentAccountPicture: CircleAvatar(
-              backgroundColor: Colors.white,
-              child: Icon(Icons.person, size: 40),
+          UserAccountsDrawerHeader(
+            decoration: BoxDecoration(color: AppColors.primaryOrange),
+            accountName: const Text(
+              "mor_2314",
+              style: TextStyle(color: AppColors.white),
+            ),
+            accountEmail: const Text(
+              "example.com",
+              style: TextStyle(color: AppColors.white),
+            ),
+            currentAccountPicture: const CircleAvatar(
+              backgroundColor: AppColors.white,
+              child: Icon(
+                Icons.person,
+                size: 40,
+                color: AppColors.primaryOrange,
+              ),
             ),
           ),
           _buildDrawerItem(
@@ -57,6 +69,15 @@ class AppDrawer extends StatelessWidget {
     required String text,
     required VoidCallback onTap,
   }) {
-    return ListTile(leading: Icon(icon), title: Text(text), onTap: onTap);
+    return ListTile(
+      leading: Icon(icon, color: AppColors.primaryOrange),
+      title: Text(text, style: const TextStyle(fontWeight: FontWeight.w600)),
+      onTap: onTap,
+      hoverColor: AppColors.primaryOrange.withOpacity(
+        0.1,
+      ), // subtle hover effect for desktop/web
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      dense: true,
+    );
   }
 }

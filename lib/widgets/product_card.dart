@@ -3,6 +3,7 @@ import '../data/models/product_model.dart';
 import '../routes/app_routes.dart';
 import 'package:get/get.dart';
 import 'custom_button.dart';
+import '../../constants/colors.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -62,10 +63,10 @@ class ProductCard extends StatelessWidget {
                   child: Text(
                     "\$${product.price}",
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: Colors.green,
+                      color: AppColors.accentGreen, // Use your green
                     ),
                   ),
                 ),
@@ -81,7 +82,7 @@ class ProductCard extends StatelessWidget {
                         () => Get.toNamed(
                           "${AppRoutes.productDetails}/${product.id}",
                         ),
-                    color: Colors.orange,
+                    color: AppColors.primaryOrange,
                   ),
                 ),
               ],
