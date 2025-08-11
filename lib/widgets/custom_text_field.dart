@@ -31,16 +31,16 @@ class _CustomTextFieldState extends State<CustomTextField> {
       obscureText: _isObscured,
       onChanged: widget.onChanged,
       style: const TextStyle(
-        color: Colors.white, // White text when typing
+        color: Color.fromARGB(255, 0, 0, 0), // White text when typing
       ),
       decoration: InputDecoration(
         labelText: widget.label,
-        labelStyle: const TextStyle(color: Colors.white70),
+        labelStyle: const TextStyle(color: Color.fromARGB(179, 11, 31, 254)),
         enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white70),
+          borderSide: BorderSide(color: Color.fromARGB(179, 0, 0, 0)),
         ),
         focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: BorderSide(color: Color.fromARGB(255, 0, 0, 0)),
         ),
         suffixIcon:
             widget.obscureText
