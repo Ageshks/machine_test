@@ -39,6 +39,7 @@ class LoginView extends StatelessWidget {
                 obscureText: true,
                 onChanged: (val) => controller.password.value = val,
               ),
+
               const SizedBox(height: 20),
               Obx(
                 () => CustomButton(

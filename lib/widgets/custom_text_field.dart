@@ -1,35 +1,62 @@
 import 'package:flutter/material.dart';
-import '../constants/colors.dart';
 
-class CustomTextField extends StatelessWidget {
+class CustomTextField extends StatefulWidget {
   final String label;
   final bool obscureText;
-  final ValueChanged<String> onChanged;
-  final TextInputType keyboardType;
+  final ValueChanged<String>? onChanged;
 
   const CustomTextField({
     super.key,
     required this.label,
-    required this.onChanged,
     this.obscureText = false,
-    this.keyboardType = TextInputType.text,
+    this.onChanged,
   });
+
+  @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  bool _isObscured = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _isObscured = widget.obscureText;
+  }
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      decoration: InputDecoration(
-        labelText: label,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-        labelStyle: const TextStyle(color: AppColors.grey),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: const BorderSide(color: AppColors.primary),
-        ),
+      obscureText: _isObscured,
+      onChanged: widget.onChanged,
+      style: const TextStyle(
+        color: Colors.white, // White text when typing
       ),
-      obscureText: obscureText,
-      keyboardType: keyboardType,
-      onChanged: onChanged,
+      decoration: InputDecoration(
+        labelText: widget.label,
+        labelStyle: const TextStyle(color: Colors.white70),
+        enabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.white70),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.white),
+        ),
+        suffixIcon:
+            widget.obscureText
+                ? IconButton(
+                  icon: Icon(
+                    _isObscured ? Icons.visibility_off : Icons.visibility,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _isObscured = !_isObscured;
+                    });
+                  },
+                )
+                : null,
+      ),
     );
   }
 }

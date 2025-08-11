@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:machine_test/home/controller/product_controller.dart';
 import 'package:machine_test/widgets/product_card.dart';
-import '../../routes/app_routes.dart';
+import '../../widgets/app_drawer.dart';
 
 class ProductsView extends StatelessWidget {
   ProductsView({super.key});
@@ -11,19 +11,13 @@ class ProductsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: AppDrawer(controller: controller),
       appBar: AppBar(
-        title: const Text("Products"),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            tooltip: "Logout",
-            onPressed: () {
-              controller.products.clear();
-              Get.offAllNamed(AppRoutes.login);
-              Get.snackbar("Logged out", "You have been logged out");
-            },
-          ),
-        ],
+        centerTitle: true,
+        title: const Text(
+          "Fazyo",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
       body: Obx(() {
         if (controller.isLoading.value && controller.products.isEmpty) {
@@ -51,7 +45,7 @@ class ProductsView extends StatelessWidget {
         return RefreshIndicator(
           onRefresh: () => controller.fetchProducts(firstLoad: true),
           child: GridView.builder(
-            physics: const AlwaysScrollableScrollPhysics(), // important
+            physics: const AlwaysScrollableScrollPhysics(),
             padding: const EdgeInsets.all(8),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
