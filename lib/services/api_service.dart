@@ -23,4 +23,16 @@ class ApiService {
       throw Exception('Login failed: ${res.body}');
     }
   }
+
+  static Future<List<dynamic>> getProducts() async {
+    final res = await http.get(Uri.parse('$baseUrl/products'));
+    if (res.statusCode == 200) return jsonDecode(res.body);
+    throw Exception('Failed to fetch products');
+  }
+
+  static Future<Map<String, dynamic>> getProduct(int id) async {
+    final res = await http.get(Uri.parse('$baseUrl/products/$id'));
+    if (res.statusCode == 200) return jsonDecode(res.body);
+    throw Exception('Failed to fetch product');
+  }
 }

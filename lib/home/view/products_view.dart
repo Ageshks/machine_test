@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:machine_test/home/controller/product_controller.dart';
+import 'package:machine_test/widgets/product_card.dart';
 import '../../routes/app_routes.dart';
 
 class ProductsView extends StatelessWidget {
