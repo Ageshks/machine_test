@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import '../controller/login_controller.dart';
 import '../../widgets/custom_text_field.dart';
 import '../../widgets/custom_button.dart';
-import '../../constants/colors.dart';
 import '../../widgets/glass_card.dart';
 
 class LoginView extends StatelessWidget {
